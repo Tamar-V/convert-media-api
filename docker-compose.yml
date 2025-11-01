@@ -1,0 +1,33 @@
+version: "3.9"
+services:
+  converter:
+    build: .
+    container_name: converter-api
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: "production"
+      PORT: "3000"
+      RL_WINDOW_MS: "60000"
+      RL_MAX: "60"
+      MAX_FILE_MB: "1024"
+      ALLOWED_FORMATS: "mp4,mp3,wav,webm,avi,mov,m4a"
+      ALLOWED_INPUT_MIME: "video/,audio/"
+      MAX_STREAMS: "4"
+      FFMPEG_TIMEOUT_SEC: "900"
+      CORS_ORIGINS: "*"
+      LOG_DIR: "/app/logs"
+      LOG_LEVEL: "info"
+      LOG_MAX_DAYS: "14d"
+      LOG_MAX_SIZE: "100m"
+      TZ: "Asia/Jerusalem"
+    volumes:
+      - ./data/uploads:/app/uploads
+      - ./data/logs:/app/logs
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://127.0.0.1:3000/health || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
