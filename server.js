@@ -13,10 +13,10 @@ const rateLimit = require('express-rate-limit');
 const morgan = require('morgan');
 const logger = require('./logger');
 require('dotenv').config();
-const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
-const ffprobePath = require('@ffprobe-installer/ffprobe').path;
-ffmpeg.setFfmpegPath(ffmpegPath);
-ffmpeg.setFfprobePath(ffprobePath);
+// const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
+// const ffprobePath = require('@ffprobe-installer/ffprobe').path;
+// ffmpeg.setFfmpegPath(ffmpegPath);
+// ffmpeg.setFfprobePath(ffprobePath);
 
 
 
